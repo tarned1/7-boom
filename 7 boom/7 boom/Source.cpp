@@ -9,7 +9,7 @@ struct player
 };
 enum
 {
-	one = 1, two, three, four
+	null, one = 1, two, three, four
 };
 bool check_num_for_7(int);
 void player_1();
@@ -25,10 +25,12 @@ int main()
 		do
 		{
 			system("cls");
-			cout << "How many players do you want[1-15]?" << endl;
-		} while (!check_input(choise, 1, 15));
+			cout << "How many players do you want[0-15]?" << endl;
+		} while (!check_input(choise, 0, 15));
 		switch (choise)
 		{
+		case null:
+			break;
 		case one:
 			player_1();
 			break;
@@ -39,9 +41,12 @@ int main()
 			player_X(choise);
 			break;
 		}
-		system("cls");
-		cout << "do you want to play again[1/0]?";
-		while (!check_input(choise, 0, 1));
+		if (choise)
+		{
+			system("cls");
+			cout << "do you want to play again[1/0]?";
+			while (!check_input(choise, 0, 1));
+		}
 	} while (choise);
 
 	return 0;
